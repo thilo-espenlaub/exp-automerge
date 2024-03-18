@@ -7,6 +7,11 @@ on:
         description: 'Fail the workflow'
         type: boolean
         default: false
+
+permissions:
+  pull-requests: write
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,6 +25,8 @@ jobs:
       if: ${{ github.event.inputs.fail_workflow == 'true' }}
       run: exit 1
 
-    - name: merge
+    - name: disable auto-merge
       run: |
-        gh pr merge --merge "$PR_URL"
+        gh pr merge --disable-auto "${{github.event.pull_request.html_url}}"
+      env:
+        GH_TOKEN: ${{secrets.GITHUB_TOKEN}}

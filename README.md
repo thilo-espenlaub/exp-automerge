@@ -6,3 +6,6 @@ Trigger build... automerge feature is enabled but actions do not contain `gh pr 
 
 
 Another experiment... automerge feature is disabled and actions contain `gh pr merge --merge` what happens? The PR build fails with "To have the pull request merged after all the requirements have been met, add the `--auto` flag." 
+
+
+Another experiment... use `gh pr merge --disable-auto` does it prevent auto merges?
