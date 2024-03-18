@@ -19,3 +19,7 @@ jobs:
     - name: Fail the workflow - ${{ github.event.inputs.fail_workflow }}
       if: ${{ github.event.inputs.fail_workflow == 'true' }}
       run: exit 1
+
+    - name: merge
+      run: |
+        gh pr merge --merge "$PR_URL"
