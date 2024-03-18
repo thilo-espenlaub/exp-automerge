@@ -1,0 +1,19 @@
+on:
+  workflow_dispatch:
+    inputs:
+      fail_workflow:
+        description: 'Fail the workflow'
+        type: boolean
+        default: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Run build
+      run: |
+        echo "Hello, build!"
+    - name: Fail the workflow - ${{ github.event.inputs.fail_workflow }}
+      if: ${{ github.event.inputs.fail_workflow == 'true' }}
+      run: exit 1
